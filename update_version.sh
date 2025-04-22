@@ -8,21 +8,21 @@ COMMIT_MESSAGE="Bumped up version"
 # --- Helper Functions ---
 
 function get_version_code() {
-  grep "versionCode = " "$BUILD_GRADLE" | awk -F'= ' '{print $2}' | tr -d '[:space:]' | sed 's/[^0-9]*//g'
+  grep "versionCode = " "$APP_DIR/$BUILD_GRADLE" | awk -F'= ' '{print $2}'
 }
 
 function get_version_name() {
-  grep "versionName = " "$BUILD_GRADLE" | awk -F'= "' '{print $2}' | sed 's/"//g'
+  grep "versionName = " "$APP_DIR/$BUILD_GRADLE" | awk -F'= "' '{print $2}' | sed 's/"//g'
 }
 
 function set_version_code() {
   local new_version_code="$1"
-  sed -i "s/versionCode = .*/versionCode = $new_version_code/" "$BUILD_GRADLE"
+  sed -i '' "s/versionCode = .*/versionCode = $new_version_code/" "$APP_DIR/$BUILD_GRADLE"
 }
 
 function set_version_name() {
   local new_version_name="$1"
-  sed -i "s/versionName = \".*\"/versionName = \"$new_version_name\"/" "$BUILD_GRADLE"
+  sed -i '' "s/versionName = \".*\"/versionName = \"$new_version_name\"/" "$APP_DIR/$BUILD_GRADLE"
 }
 
 # --- Main Script ---
@@ -39,7 +39,7 @@ echo "2. Current versionCode: $current_version_code"
 
 # 3. Increment versionCode by one and print it
 new_version_code=$((current_version_code + 1))
-#set_version_code "$new_version_code"
+set_version_code "$new_version_code"
 echo "3. New versionCode: $new_version_code (updated in $BUILD_GRADLE)"
 
 # 4. Get current versionName and print it
@@ -52,7 +52,7 @@ if [ -z "$new_version_name" ]; then
   echo "Error: Version name cannot be empty. Exiting."
   exit 1
 fi
-#set_version_name "$new_version_name"
+set_version_name "$new_version_name"
 echo "   New versionName set to: $new_version_name (updated in $BUILD_GRADLE)"
 
 # 6. Stage changes to build.gradle
