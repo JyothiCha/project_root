@@ -11,8 +11,8 @@ android {
         minSdkVersion(21)
         targetSdkVersion(30)
 
-        versionCode = 1
-        versionName = "11.0.0"  // Starting version name (to be set by your script)
+        versionCode = 2
+        versionName = "12.0.0"  // Starting version name (to be set by your script)
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
