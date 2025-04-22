@@ -22,7 +22,7 @@ function set_version_code() {
 
 function set_version_name() {
   local new_version_name="$1"
-  sed -i '' "s/versionName = \".*\"/versionName = \"$new_version_name\"/" "$BUILD_GRADLE"
+  sed -i "s/versionName = \".*\"/versionName = \"$new_version_name\"/" "$BUILD_GRADLE"
 }
 
 # --- Main Script ---
