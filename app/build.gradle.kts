@@ -11,8 +11,8 @@ android {
         minSdkVersion(21)
         targetSdkVersion(30)
 
-        versionCode = 1  // Starting version code (to be incremented by your script)
-        versionName = "1.0.0"  // Starting version name (to be set by your script)
+        versionCode = 2  // Starting version code (to be incremented by your script)
+        versionName = "2.0.0"  // Starting version name (to be set by your script)
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
