@@ -17,12 +17,12 @@ function get_version_name() {
 
 function set_version_code() {
   local new_version_code="$1"
-  sed -i '' "s/versionCode = .*/versionCode = $new_version_code/" "$APP_DIR/$BUILD_GRADLE"
+  sed -i "s/versionCode = .*/versionCode = $new_version_code/" "$BUILD_GRADLE"
 }
 
 function set_version_name() {
   local new_version_name="$1"
-  sed -i '' "s/versionName = \".*\"/versionName = \"$new_version_name\"/" "$APP_DIR/$BUILD_GRADLE"
+  sed -i '' "s/versionName = \".*\"/versionName = \"$new_version_name\"/" "$BUILD_GRADLE"
 }
 
 # --- Main Script ---
@@ -52,7 +52,7 @@ if [ -z "$new_version_name" ]; then
   echo "Error: Version name cannot be empty. Exiting."
   exit 1
 fi
-set_version_name "$new_version_name"
+#set_version_name "$new_version_name"
 echo "   New versionName set to: $new_version_name (updated in $BUILD_GRADLE)"
 
 # 6. Stage changes to build.gradle
