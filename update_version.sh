@@ -8,11 +8,11 @@ COMMIT_MESSAGE="Bumped up version"
 # --- Helper Functions ---
 
 function get_version_code() {
-  grep "versionCode = " "$APP_DIR/$BUILD_GRADLE" | awk -F'= ' '{print $2}'
+  grep "versionCode = " "$BUILD_GRADLE" | awk -F'= ' '{print $2}' | tr -d '[:space:]' | sed 's/[^0-9]*//g'
 }
 
 function get_version_name() {
-  grep "versionName = " "$APP_DIR/$BUILD_GRADLE" | awk -F'= "' '{print $2}' | sed 's/"//g'
+  grep "versionName = " "$BUILD_GRADLE" | awk -F'= "' '{print $2}' | sed 's/"//g'
 }
 
 function set_version_code() {
@@ -39,7 +39,7 @@ echo "2. Current versionCode: $current_version_code"
 
 # 3. Increment versionCode by one and print it
 new_version_code=$((current_version_code + 1))
-set_version_code "$new_version_code"
+#set_version_code "$new_version_code"
 echo "3. New versionCode: $new_version_code (updated in $BUILD_GRADLE)"
 
 # 4. Get current versionName and print it
